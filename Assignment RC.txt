@@ -1,0 +1,41 @@
+## R Programing Assignment #2 
+
+## Assignment is to create a pair of fuctions which will:
+## Create a special "Matrix" object that can cache its inverse "makeCacheMatrix"
+## cacheSolve will compute the inverse of the special "matrix" returned by makeCacheMatrix.
+## If the inverse has already been calculated AND the matrix has not changed, then retrieve 
+## the inverse 
+makeCacheMatrix <- function(x = matrix()) {
+  i <- NULL
+  set <- function (y) {
+    x <<-y
+    i <<- NULL
+  }
+  get <- function ()x
+  setinverse <-function(inverse) i <<- inverse
+  getinverse <-function()i
+  list (set = set, get = get, setmean = setinverse, getminverse = getinverse)
+  }
+
+
+## cacheSolve computes the inverse of the special matrix created by makeCacheMatrix.
+## if the inverse has already been calculated AND the matrix has not changed the inverse is retrieved
+## 
+
+ cacheSolve <- function(x, ...) {
+     i <- x$getinverse()
+     if(!is.null(i)) {
+       message("getting cached data")
+       i
+     }
+     data <- x$get()
+     i <- solve (data, ...)
+     x$setinverse(i)
+     i
+  }
+
+
+
+
+
+
